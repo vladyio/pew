@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
 
 require 'yaml'
-require 'pry'
 
 module Pew
   class Builtins
     class << self
       def list
-        methods.keep_if { |m| m =~ /\Abuiltin_/ }
+        methods.keep_if { |method| method.to_s.start_with?('builtin_') }
       end
 
       def builtin_tasks
@@ -18,9 +17,9 @@ module Pew
       end
 
       def builtin_version
-        puts "Pew 0.0.1"
+        puts 'Pew 0.0.1'
       end
-      alias_method :builtin_v, :builtin_version
+      alias builtin_v builtin_version
     end
   end
 
