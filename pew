@@ -17,7 +17,7 @@ module Pew
       end
 
       def builtin_version
-        puts 'Pew 0.0.2'
+        puts 'Pew 0.0.3'
       end
       alias builtin_v builtin_version
     end
@@ -26,7 +26,7 @@ module Pew
   class Manager
     class << self
       def pewdict
-        pewfile = Dir.glob(File.join(File.expand_path('~'), 'Pewfile')).first
+        pewfile = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile')).first
         unless pewfile
           puts "Can't find Pewfile in any of your directories"
           return
