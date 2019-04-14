@@ -18,6 +18,8 @@ module Pew
 
       def builtin_version
         puts 'Pew 0.0.4'
+        puts 'Vladislav Andreev, <me@vld.by>'
+        puts 'Since 2019.'
       end
       alias builtin_v builtin_version
 
