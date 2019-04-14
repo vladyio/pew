@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'pry'
+
+module Pew
+  class Builtins
+    class << self
+      def list
+        methods.keep_if { |m| m =~ /\Abuiltin_/ }
+      end
+
+      def builtin_tasks
+        puts 'Available tasks:'
+        Manager.pewdict.keys.map do |task|
+          puts "  #{task}"
+        end
+      end
+
+      def builtin_version
+        puts "Pew 0.0.1"
+      end
+      alias_method :builtin_v, :builtin_version
+    end
+  end
+
+  class Manager
+    class << self
+      def pewdict
+        YAML.safe_load(File.read('Pewfile'))
+      end
+    end
+  end
+
+  # @param name [String] Task name
+  class Task
+    def initialize(name)
+      @name = name
+
+      if Builtins.list.include?(:"builtin_#{name}")
+        Builtins.send(:"builtin_#{name}")
+      else
+        @commands = Manager.pewdict.fetch(name) do
+          puts "Cannot find command `#{name}` in your Pewfile"
+          return
+        end
+
+        execute(@commands)
+      end
+    end
+
+    def execute(commands)
+      commands.each do |command|
+        puts IO.popen([command, ARGV.join(' ')].join(' ')) { |f| puts f.read }
+      end
+    end
+  end
+
+  class CLI
+    def initialize
+      @argv = ARGV
+      Task.new(ARGV.shift)
+    end
+  end
+end
+
+Pew::CLI.new
