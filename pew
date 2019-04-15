@@ -10,12 +10,10 @@ module Pew
       end
 
       def builtin_tasks
-        return unless Manager.new.pewdict
+        return unless (pewd = Manager.new.pewdict)
 
         puts 'Available tasks:'
-        Manager.new.pewdict.keys.map do |task|
-          puts " - #{task}"
-        end
+        pewd.keys.map { |task| puts " - #{task}" }
       end
 
       def builtin_version
