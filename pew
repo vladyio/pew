@@ -80,7 +80,7 @@ module Pew
     end
 
     def execute(commands)
-      commands.each do |command|
+      Array(commands).each do |command|
         puts system([command, ARGV.join(' ')].join(' '))
       end
     end
