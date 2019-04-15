@@ -10,8 +10,10 @@ module Pew
       end
 
       def builtin_tasks
+        return unless Manager.new.pewdict
+
         puts 'Available tasks:'
-        Manager.pewdict.keys.map do |task|
+        Manager.new.pewdict.keys.map do |task|
           puts " - #{task}"
         end
       end
@@ -24,15 +26,8 @@ module Pew
       alias builtin_v builtin_version
 
       def builtin_pewfile
-        pewfiles = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile'))
-        puts "You current Pewfile is: #{pewfiles.last}\n\n"
-
-        return unless pewfiles.size > 1
-
-        puts 'Also these Pewfiles have been found:'
-        pewfiles[0..-2].each { |pewfile| puts " - #{pewfile}" }
+        puts Manager.new.pewfile
       end
-      alias builtin_pewfiles builtin_pewfile
 
       def builtin_pew
         puts 'Pew pew pew!'
@@ -41,16 +36,25 @@ module Pew
   end
 
   class Manager
-    class << self
-      def pewdict
-        pewfile = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile')).last
-        unless pewfile
-          puts "Can't find Pewfile in any of your directories"
-          return
-        end
-
-        YAML.safe_load(File.read(pewfile))
+    def pewdict
+      unless pewfile
+        puts "Can't find Pewfile in any of parent directories"
+        return
       end
+
+      YAML.safe_load(File.read(pewfile))
+    end
+
+    def pewfile
+      current_dir = Dir.pwd
+      return current_dir << '/Pewfile' unless Dir.glob('Pewfile').empty?
+
+      while current_dir != '/home'
+        current_dir = File.expand_path("#{current_dir}/..")
+        return current_dir << '/Pewfile' unless Dir.glob('Pewfile').empty?
+      end
+
+      nil
     end
   end
 
@@ -62,7 +66,7 @@ module Pew
       if Builtins.list.include?(:"builtin_#{name}")
         Builtins.send(:"builtin_#{name}")
       else
-        @commands = Manager.pewdict.fetch(name) do
+        @commands = Manager.new.pewdict.fetch(name) do
           puts "Cannot find command `#{name}` in your Pewfile"
           return
         end
