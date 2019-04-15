@@ -12,7 +12,7 @@ module Pew
       def builtin_tasks
         puts 'Available tasks:'
         Manager.pewdict.keys.map do |task|
-          puts "  #{task}"
+          puts " - #{task}"
         end
       end
 
@@ -24,14 +24,14 @@ module Pew
       alias builtin_v builtin_version
 
       def builtin_pewfile
-        pewfiles = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile')) 
+        pewfiles = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile'))
         puts "You current Pewfile is: #{pewfiles.last}\n\n"
 
         if pewfiles.size > 1
-            puts 'Also these Pewfiles have been found:'
-            pewfiles[0..-2].each do |pewfile|
-              puts " - #{pewfile}"
-            end
+          puts 'Also these Pewfiles have been found:'
+          pewfiles[0..-2].each do |pewfile|
+            puts " - #{pewfile}"
+          end
         end
       end
       alias builtin_pewfiles builtin_pewfile
