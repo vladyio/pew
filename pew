@@ -27,12 +27,10 @@ module Pew
         pewfiles = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile'))
         puts "You current Pewfile is: #{pewfiles.last}\n\n"
 
-        if pewfiles.size > 1
-          puts 'Also these Pewfiles have been found:'
-          pewfiles[0..-2].each do |pewfile|
-            puts " - #{pewfile}"
-          end
-        end
+        return unless pewfiles.size > 1
+
+        puts 'Also these Pewfiles have been found:'
+        pewfiles[0..-2].each { |pewfile| puts " - #{pewfile}" }
       end
       alias builtin_pewfiles builtin_pewfile
 
