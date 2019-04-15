@@ -98,10 +98,10 @@ module Pew
 
     def cli_help
       puts "Pew #{VERSION}"
-      puts "To execute your Pew command run:"
+      puts "To execute your Pew commands run:"
       puts "  pew [command_name]"
       puts
-      puts "List of available Pew commands:"
+      puts "List of available default Pew commands:"
       puts "  - pew tasks"
       puts "\tShow available tasks from Pewfile"
       puts "  - pew pewfile"
