@@ -4,6 +4,7 @@ require 'yaml'
 
 module Pew
   VERSION = '0.0.11'
+
   class Builtins
     class << self
       def list
@@ -29,7 +30,7 @@ module Pew
       end
 
       def builtin_pew
-        puts 'Pew pew pew!'
+        puts 'Pew pew pew! 🔫'
       end
     end
   end
@@ -69,7 +70,7 @@ module Pew
       if Builtins.list.include?(:"builtin_#{name}")
         Builtins.send(:"builtin_#{name}")
       else
-        @commands = pewd.fetch(name) do
+        @commands = pewd.fetch(@name) do
           puts "Cannot find command `#{name}` in your Pewfile"
           return
         end
