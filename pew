@@ -17,7 +17,7 @@ module Pew
       end
 
       def builtin_version
-        puts 'Pew 0.0.6'
+        puts 'Pew 0.0.7, https://github.com/vladyio/pew'
         puts 'Vladislav Andreev, <me@vld.by>'
         puts 'Since 2019.'
       end
@@ -35,7 +35,7 @@ module Pew
       alias builtin_pewfiles builtin_pewfile
 
       def builtin_pew
-        puts "Pew pew pew!"
+        puts 'Pew pew pew!'
       end
     end
   end
