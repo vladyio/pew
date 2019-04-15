@@ -84,8 +84,9 @@ module Pew
 
   class CLI
     def initialize
-      @argv = ARGV
-      Task.new(ARGV.shift) if ARGV[0]
+      return unless ARGV[0]
+
+      Task.new(ARGV.shift)
     end
   end
 end
