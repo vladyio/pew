@@ -59,12 +59,14 @@ module Pew
   # @param name [String] Task name
   class Task
     def initialize(name)
+      return unless (pewd = Manager.new.pewdict)
+
       @name = name
 
       if Builtins.list.include?(:"builtin_#{name}")
         Builtins.send(:"builtin_#{name}")
       else
-        @commands = Manager.new.pewdict.fetch(name) do
+        @commands = pewd.fetch(name) do
           puts "Cannot find command `#{name}` in your Pewfile"
           return
         end
@@ -83,7 +85,7 @@ module Pew
   class CLI
     def initialize
       @argv = ARGV
-      Task.new(ARGV.shift)
+      Task.new(ARGV.shift) if ARGV[0]
     end
   end
 end
