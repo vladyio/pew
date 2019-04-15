@@ -17,11 +17,24 @@ module Pew
       end
 
       def builtin_version
-        puts 'Pew 0.0.5'
+        puts 'Pew 0.0.6'
         puts 'Vladislav Andreev, <me@vld.by>'
         puts 'Since 2019.'
       end
       alias builtin_v builtin_version
+
+      def builtin_pewfile
+        pewfiles = Dir.glob(File.join(File.expand_path('~/**'), 'Pewfile')) 
+        puts "You current Pewfile is: #{pewfiles.last}\n\n"
+
+        if pewfiles.size > 1
+            puts 'Also these Pewfiles have been found:'
+            pewfiles[0..-2].each do |pewfile|
+              puts " - #{pewfile}"
+            end
+        end
+      end
+      alias builtin_pewfiles builtin_pewfile
 
       def builtin_pew
         puts "Pew pew pew!"
