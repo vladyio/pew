@@ -17,7 +17,7 @@ module Pew
       end
 
       def builtin_version
-        puts 'Pew 0.0.8, https://github.com/vladyio/pew'
+        puts 'Pew 0.0.10, https://github.com/vladyio/pew'
         puts 'Vladislav Andreev, <me@vld.by>'
         puts 'Since 2019.'
       end
@@ -45,11 +45,11 @@ module Pew
 
     def pewfile
       current_dir = Dir.pwd
-      return current_dir << '/Pewfile' unless Dir.glob('Pewfile').empty?
+      return current_dir << '/Pewfile' unless Dir.glob("#{current_dir}/Pewfile").empty?
 
       while current_dir != '/home'
         current_dir = File.expand_path("#{current_dir}/..")
-        return current_dir << '/Pewfile' unless Dir.glob('Pewfile').empty?
+        return current_dir << '/Pewfile' unless Dir.glob("#{current_dir}/Pewfile").empty?
       end
 
       nil
