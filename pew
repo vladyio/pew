@@ -88,7 +88,7 @@ module Pew
 
   class CLI
     def initialize
-      unless ARGV[0]
+      if !ARGV[0] || ARGV[0] == 'help'
         cli_help
         return
       end
