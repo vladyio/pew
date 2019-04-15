@@ -75,7 +75,7 @@ module Pew
 
     def execute(commands)
       commands.each do |command|
-        puts IO.popen([command, ARGV.join(' ')].join(' ')) { |f| puts f.read }
+        puts system([command, ARGV.join(' ')].join(' '))
       end
     end
   end
