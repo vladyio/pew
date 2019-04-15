@@ -101,7 +101,7 @@ module Pew
       puts "To execute your Pew commands run:"
       puts "  pew [command_name]"
       puts
-      puts "List of available default Pew commands:"
+      puts "List of default Pew commands:"
       puts "  - pew tasks"
       puts "\tShow available tasks from Pewfile"
       puts "  - pew pewfile"
