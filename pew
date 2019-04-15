@@ -71,7 +71,7 @@ module Pew
         Builtins.send(:"builtin_#{name}")
       else
         @commands = pewd.fetch(@name) do
-          puts "Cannot find command `#{name}` in your Pewfile"
+          puts "Cannot find command `#{@name}` in your Pewfile"
           return
         end
 
