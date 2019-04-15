@@ -19,7 +19,7 @@ module Pew
       end
 
       def builtin_version
-        puts VERSION << ' https://github.com/vladyio/pew'
+        puts VERSION << ', https://github.com/vladyio/pew'
         puts 'Vladislav Andreev, <me@vld.by>'
         puts 'Since 2019.'
       end
