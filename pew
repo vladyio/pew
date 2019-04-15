@@ -105,7 +105,7 @@ module Pew
       puts "  - pew tasks"
       puts "\tShow available tasks from Pewfile"
       puts "  - pew pewfile"
-      puts "\tShows current Pewfile location"
+      puts "\tShow current Pewfile location"
       puts "  - pew v, pew version"
       puts "\tShow current Pew version and info"
     end
