@@ -88,9 +88,26 @@ module Pew
 
   class CLI
     def initialize
-      return unless ARGV[0]
+      unless ARGV[0]
+        cli_help
+        return
+      end
 
       Task.new(ARGV.shift)
+    end
+
+    def cli_help
+      puts "Pew #{VERSION}"
+      puts "To execute your Pew command run:"
+      puts "  pew [command_name]"
+      puts
+      puts "List of available Pew commands:"
+      puts "  - pew tasks"
+      puts "\tShow available tasks from Pewfile"
+      puts "  - pew pewfile"
+      puts "\tShows current Pewfile location"
+      puts "  - pew v, pew version"
+      puts "\tShow current Pew version and info"
     end
   end
 end
