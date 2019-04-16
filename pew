@@ -81,7 +81,7 @@ module Pew
 
     def execute(commands)
       Array(commands).each do |command|
-        puts system([command, ARGV.join(' ')].join(' '))
+        system([command, ARGV.join(' ')].join(' '))
       end
     end
   end
