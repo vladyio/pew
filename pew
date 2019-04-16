@@ -3,7 +3,7 @@
 require 'yaml'
 
 module Pew
-  VERSION = '0.0.12'
+  VERSION = '0.0.12'.freeze
 
   class Builtins
     class << self
@@ -98,15 +98,15 @@ module Pew
 
     def cli_help
       puts "Pew #{VERSION}"
-      puts "To execute your Pew commands run:"
-      puts "  pew [command_name]"
+      puts 'To execute your Pew commands run:'
+      puts '  pew [command_name]'
       puts
-      puts "List of default Pew commands:"
-      puts "  - pew tasks"
+      puts 'List of default Pew commands:'
+      puts '  - pew tasks'
       puts "\tShow available tasks from Pewfile"
-      puts "  - pew pewfile"
+      puts '  - pew pewfile'
       puts "\tShow current Pewfile location"
-      puts "  - pew v, pew version"
+      puts '  - pew v, pew version'
       puts "\tShow current Pew version and info"
     end
   end
